@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MauiThemeSample.Views.ProfilePage"
+    Title="Profile"
+    BackgroundColor="{StaticResource PageBackgroundColor}">
+
+    <VerticalStackLayout Padding="20" Spacing="20" VerticalOptions="Center">
+        <Frame
+            BorderColor="{StaticResource BorderColor}"
+            CornerRadius="10"
+            Padding="20"
+            HasShadow="True">
+            <VerticalStackLayout Spacing="15">
+                <Label
+                    Text="User Profile"
+                    FontSize="24"
+                    FontAttributes="Bold"
+                    TextColor="{StaticResource PrimaryColor}"
+                    HorizontalTextAlignment="Center" />
+
+                <VerticalStackLayout Spacing="5">
+                    <Label
+                        Text="Name"
+                        FontSize="14"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource TextColor}" />
+                    <Label
+                        Text="{Binding UserName}"
+                        FontSize="16"
+                        TextColor="{StaticResource TextSecondaryColor}" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="5">
+                    <Label
+                        Text="Email"
+                        FontSize="14"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource TextColor}" />
+                    <Label
+                        Text="{Binding UserEmail}"
+                        FontSize="14"
+                        TextColor="{StaticResource TextSecondaryColor}" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="5">
+                    <Label
+                        Text="Bio"
+                        FontSize="14"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource TextColor}" />
+                    <Label
+                        Text="{Binding UserBio}"
+                        FontSize="14"
+                        TextColor="{StaticResource TextSecondaryColor}"
+                        LineBreakMode="WordWrap" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Frame>
+    </VerticalStackLayout>
+
+</ContentPage>

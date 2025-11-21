@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MauiThemeSample.Views.HomePage"
+    Title="Home"
+    BackgroundColor="{StaticResource PageBackgroundColor}">
+
+    <VerticalStackLayout Padding="20" Spacing="20" VerticalOptions="Center">
+        <Label
+            Text="Welcome to MAUI Theme Sample!"
+            FontSize="24"
+            FontAttributes="Bold"
+            TextColor="{StaticResource TextColor}"
+            HorizontalTextAlignment="Center" />
+
+        <Frame
+            BorderColor="{StaticResource BorderColor}"
+            CornerRadius="10"
+            Padding="15"
+            HasShadow="True">
+            <VerticalStackLayout Spacing="10">
+                <Label
+                    Text="Dynamic Theming System"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    TextColor="{StaticResource PrimaryColor}" />
+                <Label
+                    Text="This application demonstrates a dynamic theming system with 5 different color themes. Navigate to the Theme Selection page to change themes."
+                    FontSize="14"
+                    TextColor="{StaticResource TextSecondaryColor}"
+                    LineBreakMode="WordWrap" />
+            </VerticalStackLayout>
+        </Frame>
+
+        <Button
+            Text="Go to Theme Selection"
+            BackgroundColor="{StaticResource ButtonBackgroundColor}"
+            TextColor="{StaticResource ButtonTextColor}"
+            Padding="20,10"
+            CornerRadius="10" />
+    </VerticalStackLayout>
+
+</ContentPage>
