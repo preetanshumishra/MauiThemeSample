@@ -4,60 +4,70 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MauiThemeSample.Views.ProfilePage"
     Title="Profile"
-    BackgroundColor="{StaticResource PageBackgroundColor}">
-
+    BackgroundColor="{DynamicResource PageBackgroundColor}">
+    
     <VerticalStackLayout Padding="20" Spacing="20" VerticalOptions="Center">
         <Frame
-            BorderColor="{StaticResource BorderColor}"
+            BackgroundColor="{DynamicResource PageBackgroundColor}"
+            BorderColor="{DynamicResource BorderColor}"
             CornerRadius="10"
             Padding="20"
-            HasShadow="True">
+            HasShadow="False">
             <VerticalStackLayout Spacing="15">
                 <Label
                     Text="User Profile"
                     FontSize="24"
                     FontAttributes="Bold"
-                    TextColor="{StaticResource PrimaryColor}"
+                    TextColor="{DynamicResource PrimaryColor}"
                     HorizontalTextAlignment="Center" />
-
+                
                 <VerticalStackLayout Spacing="5">
                     <Label
                         Text="Name"
                         FontSize="14"
                         FontAttributes="Bold"
-                        TextColor="{StaticResource TextColor}" />
+                        TextColor="{DynamicResource TextColor}" />
                     <Label
                         Text="{Binding UserName}"
                         FontSize="16"
-                        TextColor="{StaticResource TextSecondaryColor}" />
+                        TextColor="{DynamicResource TextSecondaryColor}" />
                 </VerticalStackLayout>
-
+                
                 <VerticalStackLayout Spacing="5">
                     <Label
                         Text="Email"
                         FontSize="14"
                         FontAttributes="Bold"
-                        TextColor="{StaticResource TextColor}" />
+                        TextColor="{DynamicResource TextColor}" />
                     <Label
                         Text="{Binding UserEmail}"
                         FontSize="14"
-                        TextColor="{StaticResource TextSecondaryColor}" />
+                        TextColor="{DynamicResource TextSecondaryColor}" />
                 </VerticalStackLayout>
-
+                
                 <VerticalStackLayout Spacing="5">
                     <Label
                         Text="Bio"
                         FontSize="14"
                         FontAttributes="Bold"
-                        TextColor="{StaticResource TextColor}" />
+                        TextColor="{DynamicResource TextColor}" />
                     <Label
                         Text="{Binding UserBio}"
                         FontSize="14"
-                        TextColor="{StaticResource TextSecondaryColor}"
+                        TextColor="{DynamicResource TextSecondaryColor}"
                         LineBreakMode="WordWrap" />
                 </VerticalStackLayout>
+                
+                <Button
+                    Text="Go to Theme Selection"
+                    BackgroundColor="{DynamicResource ButtonBackgroundColor}"
+                    TextColor="{DynamicResource ButtonTextColor}"
+                    Padding="20,10"
+                    CornerRadius="10"
+                    Margin="0,20,0,0"
+                    Command="{Binding GoToThemeSelectionCommand}" />
             </VerticalStackLayout>
         </Frame>
     </VerticalStackLayout>
-
+    
 </ContentPage>

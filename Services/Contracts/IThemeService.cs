@@ -1,10 +1,11 @@
 using MauiThemeSample.Enums;
 
-namespace MauiThemeSample.Services.Contracts;
-
-public interface IThemeService
+namespace MauiThemeSample.Services.Contracts
 {
-    Theme CurrentTheme { get; }
-    Task ChangeThemeAsync(Theme theme);
-    Task LoadThemeAsync();
+    public interface IThemeService
+    {
+        Theme CurrentTheme { get; }
+        Task ChangeThemeAsync(Theme theme);
+        Task LoadThemeAsync();
+    }
 }

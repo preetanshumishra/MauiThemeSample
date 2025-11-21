@@ -4,16 +4,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MauiThemeSample.Views.ThemeSelectionPage"
     Title="Theme Selection"
-    BackgroundColor="{StaticResource PageBackgroundColor}">
-
+    BackgroundColor="{DynamicResource PageBackgroundColor}">
+    
     <VerticalStackLayout Padding="20" Spacing="10">
         <Label
             Text="Select a Theme"
             FontSize="24"
             FontAttributes="Bold"
-            TextColor="{StaticResource TextColor}"
+            TextColor="{DynamicResource TextColor}"
             HorizontalTextAlignment="Center" />
-
+        
         <CollectionView
             ItemsSource="{Binding Themes}"
             SelectionMode="Single"
@@ -27,10 +27,11 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame
-                        BorderColor="{StaticResource BorderColor}"
+                        BackgroundColor="{DynamicResource PageBackgroundColor}"
+                        BorderColor="{DynamicResource BorderColor}"
                         CornerRadius="10"
                         Padding="15"
-                        HasShadow="True"
+                        HasShadow="False"
                         Margin="0,5">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer
@@ -43,22 +44,32 @@
                                     Text="{Binding ThemeTitle}"
                                     FontSize="18"
                                     FontAttributes="Bold"
-                                    TextColor="{StaticResource PrimaryColor}"
+                                    TextColor="{DynamicResource PrimaryColor}"
                                     VerticalOptions="Center"
                                     HorizontalOptions="FillAndExpand" />
                                 <CheckBox
                                     IsChecked="{Binding IsSelected}"
+                                    Color="{DynamicResource CheckBoxColor}"
                                     VerticalOptions="Center" />
                             </HorizontalStackLayout>
                             <Label
                                 Text="{Binding Description}"
                                 FontSize="14"
-                                TextColor="{StaticResource TextSecondaryColor}" />
+                                TextColor="{DynamicResource TextSecondaryColor}" />
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        
+        <Button
+            Text="Back to Home"
+            BackgroundColor="{DynamicResource ButtonBackgroundColor}"
+            TextColor="{DynamicResource ButtonTextColor}"
+            Padding="20,10"
+            CornerRadius="10"
+            Margin="0,20,0,0"
+            Command="{Binding GoHomeCommand}" />
     </VerticalStackLayout>
-
+    
 </ContentPage>
