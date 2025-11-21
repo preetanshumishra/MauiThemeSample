@@ -1,51 +1,50 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using MauiThemeSample.Services.Contracts;
 using MauiThemeSample.Services.Implementations;
 using MauiThemeSample.ViewModels;
 using MauiThemeSample.Views;
 
-namespace MauiThemeSample;
-
-public static class MauiProgram
+namespace MauiThemeSample
 {
-	public static IServiceProvider ServiceProvider { get; private set; } = null!;
-
-	public static MauiApp CreateMauiApp()
+	public static class MauiProgram
 	{
-		var builder = MauiApp.CreateBuilder();
-		builder
-			.UseMauiApp<App>()
-			.ConfigureFonts(fonts =>
-			{
-				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			});
-
-		// Register services
-		var services = new ServiceCollection();
-
-		// Services
-		services.AddSingleton<IThemeService, ThemeService>();
-
-		// ViewModels
-		services.AddSingleton<HomePageViewModel>();
-		services.AddSingleton<ProfilePageViewModel>();
-		services.AddSingleton<ThemeSelectionPageViewModel>();
-
-		// Views
-		services.AddSingleton<AppShell>();
-		services.AddSingleton<HomePage>();
-		services.AddSingleton<ProfilePage>();
-		services.AddSingleton<ThemeSelectionPage>();
-
-		var serviceProvider = services.BuildServiceProvider();
-		ServiceProvider = serviceProvider;
-
+		public static IServiceProvider ServiceProvider { get; private set; } = null!;
+		
+		public static MauiApp CreateMauiApp()
+		{
+			var builder = MauiApp.CreateBuilder();
+			builder
+				.UseMauiApp<App>()
+				.ConfigureFonts(fonts =>
+				{
+					fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+					fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+				});
+			
+			// Register services with the builder
+			builder.Services.AddSingleton<IThemeService, ThemeService>();
+			
+			// ViewModels
+			builder.Services.AddSingleton<HomePageViewModel>();
+			builder.Services.AddSingleton<ProfilePageViewModel>();
+			builder.Services.AddSingleton<ThemeSelectionPageViewModel>();
+			
+			// Views
+			builder.Services.AddSingleton<AppShell>();
+			builder.Services.AddSingleton<HomePage>();
+			builder.Services.AddSingleton<ProfilePage>();
+			builder.Services.AddSingleton<ThemeSelectionPage>();
+			
 #if DEBUG
-		builder.Logging.AddDebug();
+			builder.Logging.AddDebug();
 #endif
-
-		return builder.Build();
+			
+			var mauiApp = builder.Build();
+			
+			// Store the service provider for later use
+			ServiceProvider = mauiApp.Services;
+			
+			return mauiApp;
+		}
 	}
 }

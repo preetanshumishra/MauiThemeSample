@@ -1,41 +1,64 @@
 using MauiThemeSample.Enums;
 using MauiThemeSample.Services.Contracts;
+using MauiThemeSample.Themes;
 
-namespace MauiThemeSample.Services.Implementations;
-
-public class ThemeService : IThemeService
+namespace MauiThemeSample.Services.Implementations
 {
-    private const string ThemeKey = "AppTheme";
-    private Theme _currentTheme;
-
-    public Theme CurrentTheme
+    public class ThemeService : IThemeService
     {
-        get => _currentTheme;
-        private set => _currentTheme = value;
-    }
-
-    public async Task ChangeThemeAsync(Theme theme)
-    {
-        CurrentTheme = theme;
-
-        // Merge the appropriate resource dictionary
-        var themeName = theme.ToString().ToLower();
-        var resourceDictionary = new ResourceDictionary { Source = new Uri($"Themes/{themeName}.xaml", UriKind.Relative) };
-
-        Application.Current!.Resources.MergedDictionaries.Clear();
-        Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
-
-        // Persist the theme preference
-        Preferences.Default.Set(ThemeKey, (int)theme);
-        await Task.CompletedTask;
-    }
-
-    public async Task LoadThemeAsync()
-    {
-        // Load the previously saved theme or default to Light
-        var savedTheme = Preferences.Default.Get(ThemeKey, (int)Theme.Light);
-        var theme = (Theme)savedTheme;
-
-        await ChangeThemeAsync(theme);
+        private const string ThemeKey = "AppTheme";
+        public Theme CurrentTheme { get; set; }
+        
+        public Task ChangeThemeAsync(Theme theme)
+        {
+            CurrentTheme = theme;
+            
+            if (Application.Current == null)
+            {
+                return Task.CompletedTask;
+            }
+            
+            try
+            {
+                var mergedDictionaries = Application.Current.Resources.MergedDictionaries;
+                mergedDictionaries.Clear();
+                
+                switch (theme)
+                {
+                    case Theme.Light:
+                        mergedDictionaries.Add(new LightTheme());
+                        break;
+                    case Theme.Dark:
+                        mergedDictionaries.Add(new DarkTheme());
+                        break;
+                    case Theme.Blue:
+                        mergedDictionaries.Add(new BlueTheme());
+                        break;
+                    case Theme.Orange:
+                        mergedDictionaries.Add(new OrangeTheme());
+                        break;
+                    case Theme.White:
+                        mergedDictionaries.Add(new WhiteTheme());
+                        break;
+                    default:
+                        mergedDictionaries.Add(new LightTheme());
+                        break;
+                }
+                
+                Preferences.Default.Set(ThemeKey, (int)theme);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error changing theme: {ex.Message}");
+            }
+            
+            return Task.CompletedTask;
+        }
+        
+        public async Task LoadThemeAsync()
+        {
+            var savedTheme = Preferences.Default.Get(ThemeKey, (int)Theme.Light);
+            await ChangeThemeAsync((Theme)savedTheme);
+        }
     }
 }

@@ -4,41 +4,43 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MauiThemeSample.Views.HomePage"
     Title="Home"
-    BackgroundColor="{StaticResource PageBackgroundColor}">
-
+    BackgroundColor="{DynamicResource PageBackgroundColor}">
+    
     <VerticalStackLayout Padding="20" Spacing="20" VerticalOptions="Center">
         <Label
             Text="Welcome to MAUI Theme Sample!"
             FontSize="24"
             FontAttributes="Bold"
-            TextColor="{StaticResource TextColor}"
+            TextColor="{DynamicResource TextColor}"
             HorizontalTextAlignment="Center" />
-
+        
         <Frame
-            BorderColor="{StaticResource BorderColor}"
+            BackgroundColor="{DynamicResource PageBackgroundColor}"
+            BorderColor="{DynamicResource BorderColor}"
             CornerRadius="10"
             Padding="15"
-            HasShadow="True">
+            HasShadow="False">
             <VerticalStackLayout Spacing="10">
                 <Label
                     Text="Dynamic Theming System"
                     FontSize="18"
                     FontAttributes="Bold"
-                    TextColor="{StaticResource PrimaryColor}" />
+                    TextColor="{DynamicResource PrimaryColor}" />
                 <Label
                     Text="This application demonstrates a dynamic theming system with 5 different color themes. Navigate to the Theme Selection page to change themes."
                     FontSize="14"
-                    TextColor="{StaticResource TextSecondaryColor}"
+                    TextColor="{DynamicResource TextSecondaryColor}"
                     LineBreakMode="WordWrap" />
             </VerticalStackLayout>
         </Frame>
-
+        
         <Button
             Text="Go to Theme Selection"
-            BackgroundColor="{StaticResource ButtonBackgroundColor}"
-            TextColor="{StaticResource ButtonTextColor}"
+            BackgroundColor="{DynamicResource ButtonBackgroundColor}"
+            TextColor="{DynamicResource ButtonTextColor}"
             Padding="20,10"
-            CornerRadius="10" />
+            CornerRadius="10"
+            Command="{Binding GoToThemeSelectionCommand}" />
     </VerticalStackLayout>
-
+    
 </ContentPage>

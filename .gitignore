@@ -61,5 +61,4 @@ logs/
 # MAUI temp files
 .maui/
 
-# .claude folder (no Claude references)
 .claude/

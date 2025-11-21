@@ -1,10 +1,11 @@
-namespace MauiThemeSample.Enums;
-
-public enum Theme
+namespace MauiThemeSample.Enums
 {
-    Light,
-    Dark,
-    Blue,
-    Orange,
-    White
+    public enum Theme
+    {
+        Light,
+        Dark,
+        Blue,
+        Orange,
+        White
+    }
 }

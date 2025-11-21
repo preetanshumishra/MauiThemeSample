@@ -1,25 +1,33 @@
 ﻿using MauiThemeSample.Services.Contracts;
 
-namespace MauiThemeSample;
-
-public partial class App : Application
+namespace MauiThemeSample
 {
-	public App()
+	public partial class App
 	{
-		InitializeComponent();
-	}
-
-	protected override async void OnStart()
-	{
-		base.OnStart();
-
-		// Load the saved theme
-		var themeService = MauiProgram.ServiceProvider.GetRequiredService<IThemeService>();
-		await themeService.LoadThemeAsync();
-	}
-
-	protected override Window CreateWindow(IActivationState? activationState)
-	{
-		return new Window(new AppShell());
+		public App()
+		{
+			InitializeComponent();
+		}
+		
+		protected override Window CreateWindow(IActivationState? activationState)
+		{
+			var window = new Window(new AppShell());
+			
+			// Load the saved theme after the window is created
+			MainThread.BeginInvokeOnMainThread(async void () =>
+			{
+				try
+				{
+					var themeService = MauiProgram.ServiceProvider.GetRequiredService<IThemeService>();
+					await themeService.LoadThemeAsync();
+				}
+				catch (Exception ex)
+				{
+					System.Diagnostics.Debug.WriteLine($"Error loading theme: {ex.Message}");
+				}
+			});
+			
+			return window;
+		}
 	}
 }

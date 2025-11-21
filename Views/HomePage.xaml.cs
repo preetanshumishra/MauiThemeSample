@@ -1,12 +1,13 @@
 using MauiThemeSample.ViewModels;
 
-namespace MauiThemeSample.Views;
-
-public partial class HomePage : ContentPage
+namespace MauiThemeSample.Views
 {
-    public HomePage(HomePageViewModel viewModel)
+    public partial class HomePage
     {
-        InitializeComponent();
-        BindingContext = viewModel;
+        public HomePage(HomePageViewModel viewModel)
+        {
+            InitializeComponent();
+            BindingContext = viewModel;
+        }
     }
 }

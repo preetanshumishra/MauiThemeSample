@@ -1,12 +1,13 @@
 using MauiThemeSample.ViewModels;
 
-namespace MauiThemeSample.Views;
-
-public partial class ThemeSelectionPage : ContentPage
+namespace MauiThemeSample.Views
 {
-    public ThemeSelectionPage(ThemeSelectionPageViewModel viewModel)
+    public partial class ThemeSelectionPage
     {
-        InitializeComponent();
-        BindingContext = viewModel;
+        public ThemeSelectionPage(ThemeSelectionPageViewModel viewModel)
+        {
+            InitializeComponent();
+            BindingContext = viewModel;
+        }
     }
 }
