@@ -1,0 +1,65 @@
+# Build results
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.so
+*.dylib
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Visual Studio
+.vs/
+*.sln.iml
+
+# User-specific files
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+*.iml
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Local environment
+.env
+.env.local
+appsettings.local.json
+
+# Generated files
+*.g.cs
+*.g.xaml.cs
+
+# Rider cache
+.idea/
+
+# NuGet
+.nuget/
+nuget.config
+
+# Test coverage
+coverage/
+*.coverage
+
+# Logs
+logs/
+*.log
+
+# macOS app bundle
+.app/
+
+# MAUI temp files
+.maui/
+
+# .claude folder (no Claude references)
+.claude/

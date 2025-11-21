@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MauiThemeSample.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MauiThemeSample.Views"
+    Title="Theme Sample">
+
+    <TabBar>
+        <ShellContent
+            Title="Home"
+            Icon="home.png"
+            ContentTemplate="{DataTemplate local:HomePage}"
+            Route="HomePage" />
+
+        <ShellContent
+            Title="Profile"
+            Icon="profile.png"
+            ContentTemplate="{DataTemplate local:ProfilePage}"
+            Route="ProfilePage" />
+
+        <ShellContent
+            Title="Themes"
+            Icon="themes.png"
+            ContentTemplate="{DataTemplate local:ThemeSelectionPage}"
+            Route="ThemeSelectionPage" />
+    </TabBar>
+
+</Shell>

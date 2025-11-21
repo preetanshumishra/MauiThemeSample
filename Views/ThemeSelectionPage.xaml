@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MauiThemeSample.Views.ThemeSelectionPage"
+    Title="Theme Selection"
+    BackgroundColor="{StaticResource PageBackgroundColor}">
+
+    <VerticalStackLayout Padding="20" Spacing="10">
+        <Label
+            Text="Select a Theme"
+            FontSize="24"
+            FontAttributes="Bold"
+            TextColor="{StaticResource TextColor}"
+            HorizontalTextAlignment="Center" />
+
+        <CollectionView
+            ItemsSource="{Binding Themes}"
+            SelectionMode="Single"
+            SelectionChangedCommand="{Binding SelectThemeCommand}"
+            SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout
+                    Orientation="Vertical"
+                    ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame
+                        BorderColor="{StaticResource BorderColor}"
+                        CornerRadius="10"
+                        Padding="15"
+                        HasShadow="True"
+                        Margin="0,5">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.SelectThemeCommand}"
+                                CommandParameter="{Binding .}" />
+                        </Frame.GestureRecognizers>
+                        <VerticalStackLayout Spacing="5">
+                            <HorizontalStackLayout Spacing="10">
+                                <Label
+                                    Text="{Binding ThemeTitle}"
+                                    FontSize="18"
+                                    FontAttributes="Bold"
+                                    TextColor="{StaticResource PrimaryColor}"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="FillAndExpand" />
+                                <CheckBox
+                                    IsChecked="{Binding IsSelected}"
+                                    VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                            <Label
+                                Text="{Binding Description}"
+                                FontSize="14"
+                                TextColor="{StaticResource TextSecondaryColor}" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+
+</ContentPage>
