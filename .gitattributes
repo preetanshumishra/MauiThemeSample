@@ -32,3 +32,10 @@
 *.mp3 binary
 *.gz binary
 *.zip binary
+
+# GitHub language detection
+bin/** linguist-vendored linguist-generated
+obj/** linguist-vendored linguist-generated
+.nuget/** linguist-vendored
+packages/** linguist-vendored
+node_modules/** linguist-vendored linguist-generated
